@@ -17,7 +17,7 @@ function loadData() {
 	if(currURL.indexOf('tamil') != -1) {
 	    data = tamilSongs;
 	    songbookTitle.text('கிறிஸ்தவ பாடல்கள்');
-	    document.title = 'கிறிஸ்தவ பாடல்கள்';
+	    document.title = 'கிறிஸ்தவ பாடல்கள் | Tamil Christian Songs';
 	} else if(currURL.indexOf('english') != -1) {
 	    data = englishSongs;
 	    songbookTitle.text('English Christian Songs');
@@ -27,7 +27,7 @@ function loadData() {
 	} else if(currURL.indexOf('hindi') != -1) {
 	    data = hindiSongs;
 	    songbookTitle.text('क्रिश्तिया गीत');
-	    document.title = 'क्रिश्तिया गीत';
+	    document.title = 'क्रिश्तिया गीत | Hindi Christian Songs';
 	} else if(currURL.indexOf('album') != -1) {
 	    filterAlbum();
 	} else if(currURL.indexOf('artist') != -1) {
