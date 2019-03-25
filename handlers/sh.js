@@ -172,6 +172,17 @@ function filterArtist() {
     document.title = artistInfo.title + ' | ' + document.title;
 };
 
+/*
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog text-muted"></i> Settings <b class="caret"></b></a>
+  <ul class="dropdown-menu text-left">
+    <li><a href="#dropdown1" data-toggle="tab">@fat</a></li>
+    <li><a href="#dropdown2" data-toggle="tab">@mdo</a></li>
+  </ul>
+</li>
+
+*/
+
 function fetch() {
 
     filtered = HTTP_GET['s'] ? filterAlphabets() : data;
@@ -211,6 +222,7 @@ function fetch() {
     }
 
     window.scroll({ top: cont.scrollTop, behavior: 'smooth' });
+    $(document).on('click.bs.dropdown.data-api', '.dropdown .on, .dropup .on, .open .on', function (e) { e.stopPropagation() });
 };
 
 var adIndex = 0;

@@ -131,17 +131,21 @@ var songlistData = {};
 function updateSongListUI() {
     var songlist = jQuery('#songlist');
     songlist.find('.data').remove();
+    var songlistMenu = jQuery('#songlistMenu');
+    songlistMenu.find('li').remove();
     db.ref().child('songlist').orderByChild('uid').equalTo(userData.uid).on('value', function(snapshot) {
         songlistData = snapshot.val();
         for (var key in songlistData) {
             var info = songlistData[key];
             var li = jQuery('<li class="data">' + '<a href="#" data-id="' + key + '"><b class="badge bg-success dker pull-right">' + (info.songs ? Object.keys(info.songs).length : '') + '</b><span>' + info.name + '</span></a></li>');
             songlist.append(li);
+            var item = jQuery('<li><a tabindex="-1" href="#" data-id=' + key + '">' + info.name + '</a></li>');
+            songlistMenu.append(item);
         }
     });
 };
 
 function addSongsToList() {
-    
+    var data = 
 };
 

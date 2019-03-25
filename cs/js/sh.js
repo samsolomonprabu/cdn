@@ -297,7 +297,7 @@ function fetch() {
     		icon.attr('data-youtube', filtered[i].karoke).on('click', handleYoutube);
     		song.find('span.data-opts').append(icon);
     	}
-    	var moreIcon = jQuery('<i id="songMenu" class="fas fa-ellipsis-v dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px; color: #007bff;margin-left:15px;" onclick="appendSongMenu(this);"></i>');
+    	var moreIcon = jQuery('<div class="dropdown">');
     	song.find('span.data-opts').append(moreIcon);
 		song.find('span.data-title').text((i + 1) + '. ' + filtered[i].title);
 		song.attr('style', '');
