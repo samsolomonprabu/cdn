@@ -315,6 +315,7 @@ function fetch() {
     }
 
     window.scroll({ top: cont.scrollTop, behavior: 'smooth' });
+    $(document).on('click.bs.dropdown.data-api', '.dropdown .on, .dropup .on, .open .on', function (e) { e.stopPropagation() });
 };
 
 function appendSongMenu(el) {
