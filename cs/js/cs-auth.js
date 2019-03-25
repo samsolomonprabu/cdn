@@ -110,15 +110,19 @@ function addFavoritesList() {
     }
 };
 
+function showAddSongList() {
+    jQuery('#songListModal').modal('show');
+};
+
 function addSongList(listName) {
-    var songListData = {
+    var listData = {
         uid: userData.uid,
         name: listName,
         songs: {}
     };
     var newListKey = db.ref().child('songlist').push().key;
     var updates = {};
-    updates['songlist/' + newListKey] = songListData;
+    updates['songlist/' + newListKey] = listData;
     db.ref().update(updates, function(error) {
         if (error) {
         } else {
@@ -130,22 +134,45 @@ function addSongList(listName) {
 var songlistData = {};
 function updateSongListUI() {
     var songlist = jQuery('#songlist');
-    songlist.find('.data').remove();
-    var songlistMenu = jQuery('#songlistMenu');
-    songlistMenu.find('li').remove();
     db.ref().child('songlist').orderByChild('uid').equalTo(userData.uid).on('value', function(snapshot) {
+        songlist.find('.data').remove();
         songlistData = snapshot.val();
+        var ul = jQuery('<ul>');
         for (var key in songlistData) {
             var info = songlistData[key];
-            var li = jQuery('<li class="data">' + '<a href="#" data-id="' + key + '"><b class="badge bg-success dker pull-right">' + (info.songs ? Object.keys(info.songs).length : '') + '</b><span>' + info.name + '</span></a></li>');
+            var li = jQuery('<li class="data" onclick="handleSongListClick(event);">' + '<a href="#" data-id="' + key + '"><b class="badge bg-success dker pull-right">' + (info.songs ? Object.keys(info.songs).length : '') + '</b><span>' + info.name + '</span></a></li>');
             songlist.append(li);
-            var item = jQuery('<li><a tabindex="-1" href="#" data-id=' + key + '">' + info.name + '</a></li>');
-            songlistMenu.append(item);
+
+            ul.append(jQuery('<li><a href="#" onclick="addSongToList(this, event);" data-id="' + key + '">' + info.name + '</a></li>'));
         }
+        var cont = jQuery('#songsContainer');
+        cont.find('.data-song-menu').html('').html(ul.html());
+        cont.find('.dropdown').show();
     });
+
 };
 
-function addSongsToList() {
-    var data = 
+function addSongToList(el, event) {
+    jQuery(el).parents('.dropdown.open').removeClass('open');
+    var listKey = jQuery(el).attr('data-id');
+    var songId = jQuery(el).parents('li.list-group-item').eq(0).attr('data-index');
+    var data = songlistData[listKey].songs || {};
+    data[songId] = true;
+    var listData = {
+        uid: userData.uid,
+        name: songlistData[listKey].name,
+        songs: data
+    };
+    var updates = {};
+    updates['songlist/' + listKey] = listData;
+    db.ref().update(updates, function(error) {
+        if (error) {
+        } else {
+            updateSongListUI();
+        }
+    });
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
 };
 
