@@ -10,7 +10,7 @@ jQuery(function(){
 			TextToCanvas.init(parent, data.content);
 			//var meta = 
 			//jQuery('#metaDesc').attr('content', )
-			document.title = data.title + ' | ' + document.title;
+			//document.title = data.title + ' | ' + document.title;
 		}
 	});
 });
