@@ -15,7 +15,7 @@ var albumsCont = jQuery('#albums');
 var artistsCont = jQuery('#artists');
 var songbookTitle = jQuery('#songbookTitle');
 var downloadApp = jQuery('#downloadApp');
-var langSongs = [];
+var langSongs = [], map = {};
 
 /*
 if (page === 'index.php') {
@@ -59,6 +59,8 @@ function loadData() {
         data = karaokeSongs;
     }
 
+    genMap();
+
     albums.length == 0 ? jQuery('#albumNav').hide() : jQuery('#albumNav').show();
     artists.length == 0 ? jQuery('#artistNav').hide() : jQuery('#artistNav').show();
     videoSongs.length == 0 ? jQuery('#videoNav').hide() : jQuery('#videoNav').show();
@@ -66,6 +68,12 @@ function loadData() {
 
     constructAlphabets();
     init();
+};
+
+function genMap() {
+    data.forEach(function(item, index) {
+        map[item.id] = item;
+    });
 };
 
 function genCategories(categories, link, handler, imgBaseURL) {
@@ -338,6 +346,7 @@ function fetch() {
         pageInfoEl.text('All Songs');
     }
 
+    appendSonglistDropdown();
     window.scroll({ top: cont.scrollTop, behavior: 'smooth' });
 };
 
@@ -597,8 +606,13 @@ function handleLangClick(event) {
 };
 
 function changeLanguage() {
+    langPicker.find('.icon-close').show();
     langPicker.fadeIn().find('.lang-info').show();
     langProgress.hide();
+};
+
+function closeLanguagePicker() {
+    langPicker.fadeOut();
 };
 
 jQuery(document).ready(function() {
