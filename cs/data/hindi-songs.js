@@ -8,6 +8,3 @@ var karaokeSongs = songs.filter(function(song) {
     return song.karoke && song.karoke !== "";
 });
 loadData();
-
-var options = { keys: ['title'], id: 'id' };
-var fuse = new Fuse(songs, options);
