@@ -32,19 +32,19 @@ var TextToCanvas = new function()
 		btnGroup.classList.add('btn-group');
 
 		var decreaseBtn = document.createElement("button");
-		decreaseBtn.className = 'btn btn-secondary';
+		decreaseBtn.className = 'btn btn-default';
 		decreaseBtn.textContent = "-";
 		decreaseBtn.addEventListener("click", self.decreaseSize);
 		btnGroup.appendChild(decreaseBtn);
 
 		var resetBtn = document.createElement("button");
-		resetBtn.className = 'btn btn-secondary';
+		resetBtn.className = 'btn btn-default';
 		resetBtn.textContent = "Reset";
 		resetBtn.addEventListener("click", self.resetSize);
 		btnGroup.appendChild(resetBtn);
 
 		var increaseBtn = document.createElement("button");
-		increaseBtn.className = 'btn btn-secondary';
+		increaseBtn.className = 'btn btn-default';
 		increaseBtn.textContent = "+";
 		increaseBtn.addEventListener("click", self.increaseSize);
 		btnGroup.appendChild(increaseBtn);
