@@ -132,24 +132,32 @@ function addSongList(listName) {
 };
 
 var songlistData = {};
+var dummyEl = null;
 function updateSongListUI() {
     var songlist = jQuery('#songlist');
     db.ref().child('songlist').orderByChild('uid').equalTo(userData.uid).on('value', function(snapshot) {
         songlist.find('.data').remove();
         songlistData = snapshot.val();
-        var ul = jQuery('<ul>');
+        dummyEl = jQuery('<ul>');
         for (var key in songlistData) {
             var info = songlistData[key];
             var li = jQuery('<li class="data" onclick="handleSongListClick(event);">' + '<a href="#" data-id="' + key + '"><b class="badge bg-success dker pull-right">' + (info.songs ? Object.keys(info.songs).length : '') + '</b><span>' + info.name + '</span></a></li>');
             songlist.append(li);
 
-            ul.append(jQuery('<li><a href="#" onclick="addSongToList(this, event);" data-id="' + key + '">' + info.name + '</a></li>'));
+            dummyEl.append(jQuery('<li><a href="#" onclick="addSongToList(this, event);" data-id="' + key + '">' + info.name + '</a></li>'));
         }
-        var cont = jQuery('#songsContainer');
-        cont.find('.data-song-menu').html('').html(ul.html());
-        cont.find('.dropdown').show();
+        appendSonglistDropdown();
     });
 
+};
+
+function appendSonglistDropdown() {
+    var page = window.location.pathname.split('/').pop();
+    if(dummyEl && page !== 'songlist.php') {
+        var cont = jQuery('#songsContainer');
+        cont.find('.data-song-menu').html('').html(dummyEl.html());
+        cont.find('.dropdown').show();
+    }
 };
 
 function addSongToList(el, event) {
@@ -157,12 +165,8 @@ function addSongToList(el, event) {
     var listKey = jQuery(el).attr('data-id');
     var songId = jQuery(el).parents('li.list-group-item').eq(0).attr('data-index');
     var data = songlistData[listKey].songs || {};
-    data[songId] = true;
-    var listData = {
-        uid: userData.uid,
-        name: songlistData[listKey].name,
-        songs: data
-    };
+    data[songId] = { title: map[songId].title, youtube: map[songId].youtube || '', karoke: map[songId].karoke || '' };
+    var listData = { uid: userData.uid, name: songlistData[listKey].name, songs: data };
     var updates = {};
     updates['songlist/' + listKey] = listData;
     db.ref().update(updates, function(error) {
