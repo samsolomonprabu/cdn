@@ -4,8 +4,8 @@ var languages = [
     { id: 'hindi', label: 'हिंदी (Hindi)' },
     { id: 'telugu', label: 'తెలుగు (Telugu)' },
     { id: 'malayalam', label: 'മലയാളം (Malayalam)' },
-    { id: 'nepali', label: 'नेपाली (Nepali)' }
-    //{ id: 'kannada', label: 'ಕನ್ನಡ (Kannada)' }
+    { id: 'nepali', label: 'नेपाली (Nepali)' },
+    { id: 'kannada', label: 'ಕನ್ನಡ (Kannada)' }
 ];
 
 var batchSize = 100;
@@ -16,49 +16,53 @@ var artistsCont = jQuery('#artists');
 var songbookTitle = jQuery('#songbookTitle');
 var downloadApp = jQuery('#downloadApp');
 var langSongs = [], map = {};
-
-/*
-if (page === 'index.php') {
-        data = tamilSongs;
-        songbookTitle.text('கிறிஸ்தவ பாடல்கள்');
-        document.title = 'கிறிஸ்தவ பாடல்கள் | Tamil Christian Songs';
-        downloadApp.attr('href', 'https://play.google.com/store/apps/details?id=sam.songbook.tamil');
-    } else if (page === 'english') {
-        data = englishSongs;
-        songbookTitle.text('English Christian Songs');
-        document.title = 'English Christian Songs';
-        downloadApp.attr('href', 'https://play.google.com/store/apps/details?id=sam.songbook.english');
-    } else if (page === 'malayalam') {
-        data = malayalamSongs;
-    } else if (page === 'hindi') {
-        data = hindiSongs;
-        songbookTitle.text('क्रिश्तिया गीत');
-        document.title = 'क्रिश्तिया गीत | Hindi Christian Songs';
-        downloadApp.attr('href', 'https://play.google.com/store/apps/details?id=sam.songbook.hindi');
-    } else 
-*/
+var fuse;
 
 function loadData() {
+    HTTP_GET = getQueryParams(window.location.search);
     langPicker.hide();
     langSongs = songs;
+    
     var page = window.location.pathname.split('/').pop();
-    var currURL = window.location.href;
     if (page === 'index.php') {
         data = songs;
     } else if (page === 'albums.php') {
-        genCategories(albums, 'albums.php', 'handleAlbumClick(event);', 'https://aagjxwfhen.cloudimg.io/width/800/none/https://samsolomonprabu.github.io/cdn/albums/');
+        genCategories(albums, 'albums.php', 'handleAlbumClick(event);', 'https://aagjxwfhen.cloudimg.io/width/800/none/https://samsolomonprabu.github.io/cdn/albums/' + localStorage.getItem('lang') + '/');
         data = [];
+        HTTP_GET['id'] && filterAlbum();
     } else if (page === 'artists.php') {
-        genCategories(artists, 'artists.php', 'handleArtistClick(event);', 'https://aagjxwfhen.cloudimg.io/width/800/none/https://samsolomonprabu.github.io/cdn/artists/');
+        genCategories(artists, 'artists.php', 'handleArtistClick(event);', 'https://aagjxwfhen.cloudimg.io/width/800/none/https://samsolomonprabu.github.io/cdn/artists/' + localStorage.getItem('lang') + '/');
         data = [];
+        HTTP_GET['id'] && filterArtist();
     } else if (page === 'video-songs.php') {
         genVideos(videoSongs);
         data = videoSongs;
+        HTTP_GET['title'] && jQuery('#lyricTitle').text(HTTP_GET['title']);
+        HTTP_GET['id'] && jQuery('#ytube').show().find('iframe').attr('src', 'https://www.youtube.com/embed/' + HTTP_GET['id']);
     } else if (page === 'karaoke-songs.php') {
-        genVideos(karaokeSongs);
+        genVideos(karaokeSongs, true);
         data = karaokeSongs;
+        HTTP_GET['title'] && jQuery('#lyricTitle').text(HTTP_GET['title']);
+        HTTP_GET['id'] && jQuery('#ytube').show().find('iframe').attr('src', 'https://www.youtube.com/embed/' + HTTP_GET['id']);
+    } else if (page === 'songlist.php') {
+        if(Object.keys(songlistData).length == 0) {
+            setTimeout(loadData, 100);
+            return;
+        }
+        var songsObj = songlistData[HTTP_GET['id']].songs;
+        var listSongs = [];
+        for(var key in songsObj) {
+            songsObj[key].id = key;
+            listSongs.push(songsObj[key]);
+        }
+        data = listSongs;
     }
 
+    // Initialise Fuse
+    var options = { keys: ['title'], id: 'id' };
+    fuse = new Fuse(data, options);
+
+    // Generate Map
     genMap();
 
     albums.length == 0 ? jQuery('#albumNav').hide() : jQuery('#albumNav').show();
@@ -91,7 +95,25 @@ function genCategories(categories, link, handler, imgBaseURL) {
     });
 };
 
-function genVideos(videos) {
+function genVideos(videos, isKaroake) {
+
+    if(!Array.isArray(videos)) {
+        var page = window.location.pathname.split('/').pop();
+        if(page === 'video-songs.php') {
+            videos = videoSongs;
+        } else if(page === 'karaoke-songs.php') {
+            videos = karaokeSongs;
+            isKaroake = true;
+        }
+    }
+
+    data = videos;
+
+    HTTP_GET = getQueryParams(window.location.search);
+    if(HTTP_GET['s']) {
+        videos = filterAlphabets();
+    }
+
     var hash = window.location.hash;
     var pageNo = 1, batchSize = 60;
     if(hash !== '') {
@@ -114,9 +136,9 @@ function genVideos(videos) {
             insertAd(videoCont);
         }
         var video = template.clone(true);
-        video.find('img').attr('src', 'https://img.youtube.com/vi/' + videos[i].youtube + '/0.jpg');
+        video.find('img').attr('src', 'https://img.youtube.com/vi/' + (isKaroake ? videos[i].karoke : videos[i].youtube) + '/0.jpg').attr('id', 'vid_' + md5(i));
         video.find('.data-song-title').text(videos[i].title);
-        video.show();
+        video.attr('data-id', (isKaroake ? videos[i].karoke : videos[i].youtube)).attr('data-title', videos[i].title).show();
         videoCont.append(video);
     }
 
@@ -125,6 +147,13 @@ function genVideos(videos) {
     for(var i = 1; i <= totalLength; i++) {
         pagination.append(jQuery('<a class="' + (pageNo == i ? 'active' : '') + ' btn btn-rounded btn-sm btn-icon btn-default" href="#' + i + '">' + i + '</a>'));
     }
+};
+
+function playVideo(event) {
+    var el = jQuery(event.currentTarget);
+    var panel = jQuery('#videoPanel').fadeIn();
+    panel.find('.video-song-title').text(el.attr('data-title'));
+    panel.find('iframe').attr('src', 'https://www.youtube.com/embed/' + el.attr('data-id'));
 };
 
 function genSongsCount() {
@@ -156,7 +185,7 @@ function constructAlphabets() {
 
     alphabetsCont.html('');
     alphabets.forEach(function(item, index) {
-        var a = jQuery('<a href="' + page + 'lang=' + HTTP_GET['lang'] + '&' + 's=' + item + '" data-index="' + index + '" class="btn btn-rounded btn-sm btn-icon btn-default">' + item + '</a>');
+        var a = jQuery('<a href="' + page + 's=' + item + '" data-index="' + index + '" class="btn btn-rounded btn-sm btn-icon btn-default">' + item + '</a>');
         a.on('click', handleAlphabetClick);
         alphabetsCont.append(a);
     });
@@ -182,7 +211,12 @@ function handleAlphabetClick(event) {
     var index = el.attr('data-index');
     window.history.pushState('alpha' + index, el.text(), el.attr('href'));
     HTTP_GET = getQueryParams(window.location.search);
-    fetch();
+    var page = window.location.pathname.split('/').pop();
+    if(page === 'index.php' || page === 'albums.php' || page === 'artists.php') {
+        fetch();
+    } else if(page === 'video-songs.php' || page === 'karaoke-songs.php') {
+        genVideos();
+    }
     event.preventDefault();
     event.stopPropagation();
     return false;
@@ -214,13 +248,16 @@ function handleArtistClick(event) {
     return false;
 };
 
-function handleSongClick(event) {
+function handleSongClick(event, showYoutube) {
     jQuery('#songsContainer > li.active').removeClass('active');
     var el = jQuery(event.currentTarget);
+    if(el.is('.fab')) {
+        el = el.parents('.list-group-item').eq(0);
+    }
     el.addClass('active');
     var info = data[el.attr('data-index')];
     window.history.pushState('song', el.text(), el.attr('href'));
-    fetchSong();
+    fetchSong(showYoutube);
     event.preventDefault();
     event.stopPropagation();
     return false;
@@ -228,8 +265,31 @@ function handleSongClick(event) {
 
 function handleSongListClick(event) {
     var el = jQuery(event.currentTarget);
+    var page = window.location.pathname.split('/').pop();
     window.history.pushState('song', el.text(), 'songlist.php?id=' + el.find('a').eq(0).attr('data-id'));
-    fetch();
+    if (page !== 'songlist.php') {
+        jQuery.ajax({
+            url: 'partials/index.php',
+            method: 'GET'
+        }).done(function(response) {
+            jQuery('#songbook-target').html(response);
+            loadData();
+        });
+    } else {
+        fetch();
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
+};
+
+function handleVideoClick(event) {
+    var el = jQuery(event.currentTarget);
+    var page = window.location.pathname.split('/').pop();
+    window.history.pushState('song', el.text(), page + '?id=' + el.attr('data-id') + '&title=' + el.attr('data-title'));
+    jQuery('#lyricTitle').text(el.attr('data-title'));
+    document.title = el.attr('data-title') + ' | Christian Song Book | Part of APA Mission';
+    jQuery('#ytube').show().find('iframe').attr('src', 'https://www.youtube.com/embed/' + el.attr('data-id'));
     event.preventDefault();
     event.stopPropagation();
     return false;
@@ -238,6 +298,10 @@ function handleSongListClick(event) {
 function handleYoutube(event) {
     var el = jQuery(event.currentTarget);
     jQuery('#ytube').show().find('iframe').attr('src', 'https://www.youtube.com/embed/' + el.attr('data-youtube'));
+    handleSongClick(event, true);
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
 };
 
 function filterAlphabets() {
@@ -246,6 +310,8 @@ function filterAlphabets() {
         var filteredData = data.filter(function(item) {
             return item.title.startsWith(alphabet);
         });
+        var alphaEl = '[href="' + window.location.pathname.split('/').pop() + '?s=' + alphabet + '"]';
+        jQuery('#alphabets ' + alphaEl).addClass('active');
         return filteredData;
     }
 };
@@ -258,6 +324,8 @@ function filterAlbum() {
     albumInfo = albums.filter(function(item) {
         return item.id == albumId;
     })[0];
+    jQuery('#categoryTitle').text(albumInfo.title);
+    document.title = albumInfo.title + ' | Christian Song Book | Part of APA Mission';
 };
 
 function filterArtist() {
@@ -268,25 +336,59 @@ function filterArtist() {
     artistInfo = artists.filter(function(item) {
         return item.id == artistId;
     })[0];
+    jQuery('#categoryTitle').text(artistInfo.title);
+    document.title = artistInfo.title + ' | Christian Song Book | Part of APA Mission';
 };
 
 function filterSongList() {
     HTTP_GET = getQueryParams(window.location.search);
+    jQuery('#pageInfoEl').text(songlistData[HTTP_GET['id']].name);
     var songsObj = songlistData[HTTP_GET['id']].songs;
     var songs = [];
     for(var key in songsObj) {
-        songs.push(langSongs[parseInt(key)]);
+        songsObj[key].id = key;
+        songs.push(songsObj[key]);
     }
     return songs;
+};
+
+function searchSongs(el) {
+    el = jQuery(el);
+    HTTP_GET = getQueryParams(window.location.search);
+    var keyword = el.val();
+    if(keyword !== '') {
+        HTTP_GET.k = el.val();
+    } else {
+        delete HTTP_GET.k;
+    }
+    var params = '';
+    for(var key in HTTP_GET) { params += key + '=' + HTTP_GET[key] + '&'; }
+    params = params.substr(0, params.length - 1);
+    window.history.pushState('search_song', el.val(), 'index.php?' + params);
+    fetch();
+};
+
+function filterSongs() {
+    HTTP_GET = getQueryParams(window.location.search);
+    var results = fuse.search(HTTP_GET['k']);
+    var filtered = [];
+    results.forEach(function(item, index) {
+        filtered.push(map[item]);
+    });
+    return filtered;
 };
 
 function fetch() {
     var page = window.location.pathname.split('/').pop();
 
-    if (page === 'index.php') {
-        filtered = HTTP_GET['s'] ? filterAlphabets() : data;
-    } else if (page === 'songlist.php') {
+    if(HTTP_GET['s']) {
+        filtered = filterAlphabets();
+    } else if(HTTP_GET['k']) {
+        filtered = filterSongs();
+    } else if(page === 'songlist.php') {
         filtered = filterSongList();
+    } else {
+        filtered = data;
     }
 
     if(!data || data.length == 0) { return; }
@@ -303,7 +405,7 @@ function fetch() {
     var template = jQuery('#categorySongTemplate');
     var params = getQueryParams(window.location.search);
     params.song && fetchSong();
-    var url = 'index.php?';
+    var url = page + '?';
     for(var key in params) {
         if (!(key === 'song' || key === 'title')) {
             url += key + '=' + params[key] + '&';
@@ -340,9 +442,9 @@ function fetch() {
     for(var i = 1; i <= totalLength; i++) {
         pagination.append(jQuery('<a class="' + (pageNo == i ? 'active' : '') + ' btn btn-rounded btn-sm btn-icon btn-default" href="#' + i + '">' + i + '</a>'));
     }
-    if(totalLength > 1) {
+    if(page === 'index.php' && totalLength > 1) {
         pageInfoEl.text('All Songs (Page ' + pageNo + '/' + totalLength + ')');
-    } else {
+    } else if(page === 'index.php') {
         pageInfoEl.text('All Songs');
     }
 
@@ -361,12 +463,18 @@ function appendSongMenu(el) {
     jQuery(el).append(menu);
 };
 
-function fetchSong() {
+function fetchSong(showYoutube) {
+    !showYoutube && jQuery('#ytube').hide();
     HTTP_GET = getQueryParams(window.location.search);
     jQuery('#lyricTitle').text(HTTP_GET['title']);
+    document.title = HTTP_GET['title'] + ' | Christian Song Book | Part of APA Mission';
     var canvasCont = jQuery('#canvasContainer');
     canvasCont.html('');
     jQuery('#lyricStatus').show().text('Loading song...');
+    jQuery('#downloadOptions').hide();
+    jQuery('#downloadOptions a').eq(0).attr('href', 'https://verkkonet.com/slide/index.php?id=' + HTTP_GET['song']);
+    jQuery('#downloadOptions a').eq(1).attr('href', 'https://verkkonet.com/slide/export.php?type=pdf&id=' + HTTP_GET['song']);
+    jQuery('#downloadOptions a').eq(2).attr('href', 'https://verkkonet.com/slide/export.php?type=image&id=' + HTTP_GET['song']);
     jQuery.ajax({
         url: 'get-song.php',
         data: {
@@ -399,7 +507,7 @@ function init() {
 
     var currURL = window.location.href;
     var page = window.location.pathname.split('/').pop();
-    if(page === 'index.php' || page === 'albums.php' || page === 'artists.php') {
+    if(page === 'index.php' || page === 'albums.php' || page === 'artists.php' || page === 'songlist.php') {
         fetch();
         window.onhashchange = fetch;
     } else if(page === 'video-songs.php' || page === 'karaoke-songs.php') {
@@ -585,21 +693,26 @@ var langProgress = jQuery('#langProgress');
 (function() {
     var langList = langPicker.find('.lang-list').eq(0);
     languages.forEach(function(item, index) {
-        langList.append(jQuery('<a href="index.php?lang=' + item.id + '" class="list-group-item" onclick="handleLangClick(event);">' + item.label + '</a>'));
+        langList.append(jQuery('<a href="index.php" class="list-group-item" onclick="handleLangClick(event, \'' + item.id + '\');">' + item.label + '</a>'));
     });
 })();
 
-var basepath = 'https://samsolomonprabu.github.io/cdn/songbook/';
-function handleLangClick(event) {
+var basepath = 'https://samsolomonprabu.github.io/cdn/cs/data/';
+var androidBaseURL = 'https://play.google.com/store/apps/details?id=sam.songbook.';
+function handleLangClick(event, lang) {
     var el = jQuery(event.currentTarget);
     window.history.pushState('song', el.text(), el.attr('href'));
-    var lang = el.attr('href').split('lang=')[1];
     var filename = basepath + lang + '-songs.js';
+    jQuery('#songdata').remove();
     var script = jQuery('<script id="songdata" type="text/javascript" src="' + filename + '"></script>');
     jQuery(document.body).append(script);
     langPicker.find('.lang-info').hide();
     langProgress.show().find('.loading-text').text('Loading ' + lang[0].toUpperCase() + lang.substr(1, lang.length - 1) + ' Songs...');
     localStorage.setItem('lang', lang);
+
+    jQuery('#androidApp').attr('href', androidBaseURL + lang);
+    jQuery('#allSongsEl').click();
+
     event.preventDefault();
     event.stopPropagation();
     return false;
@@ -617,14 +730,14 @@ function closeLanguagePicker() {
 
 jQuery(document).ready(function() {
     HTTP_GET = getQueryParams(window.location.search);
-    var lang = HTTP_GET['lang'] ? HTTP_GET['lang'] : localStorage.getItem('lang');
+    var lang = localStorage.getItem('lang');
     var page = window.location.pathname.split('/').pop();
-    if (lang && page === 'index.php') {
+    if (lang) {
         localStorage.setItem('lang', lang);
+        jQuery('#androidApp').attr('href', androidBaseURL + lang);
         var filename = basepath + lang + '-songs.js';
         var script = jQuery('<script id="songdata" type="text/javascript" src="' + filename + '"></script>');
         jQuery(document.body).append(script);
-        window.history.pushState('song', lang, 'index.php?lang=' + lang);
     } else {
         langPicker.show();
     }
@@ -636,6 +749,80 @@ function handleSongMenu(el, event) {
     event.stopPropagation();
     return false;
 };
+
+jQuery(function(){
+    jQuery.ajax({
+        method: 'POST',
+        url: 'get_song.php',
+        data: { song: HTTP_GET['song'], id: HTTP_GET['id'], i: HTTP_GET['i'] },
+        dataType: 'json',
+        context: document.body,
+        success: function(data) {
+            var parent = document.getElementById(HTTP_GET['i']);
+            TextToCanvas.init(parent, data.content);
+            //var meta = 
+            //jQuery('#metaDesc').attr('content', )
+            document.title = data.title + ' | ' + document.title;
+        }
+    });
+});
+
+window['__onGCastApiAvailable'] = function(isAvailable) {
+    if (isAvailable) {
+        initializeCastApi();
+    }
+};
+
+initializeCastApi = function() {
+    var context = cast.framework.CastContext.getInstance();
+    context.setOptions({
+        receiverApplicationId: '4375FEAA',
+        autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
+    });
+    var castMiniPlayer = jQuery('.cast-mini-player');
+    context.addEventListener(cast.framework.CastContextEventType.SESSION_STATE_CHANGED, function(event) {
+        switch (event.sessionState) {
+            case cast.framework.SessionState.SESSION_STARTED:
+                castSong();
+                castMiniPlayer.show();
+                break;
+            case cast.framework.SessionState.SESSION_RESUMED:
+                castMiniPlayer.show();
+                break;
+            case cast.framework.SessionState.SESSION_ENDED:
+                castMiniPlayer.hide();
+                break;
+        }
+    });
+
+};
+
+function castSong() {
+    var castSession = cast.framework.CastContext.getInstance().getCurrentSession();
+    if(castSession){
+        castSession.sendMessage('urn:x-cast:sam.songbook.tamil', {
+            songId: HTTP_GET['i']
+        });
+    }
+}
+
+function prevStanza() {
+    var castSession = cast.framework.CastContext.getInstance().getCurrentSession();
+    if(castSession){
+        castSession.sendMessage('urn:x-cast:sam.songbook.tamil.prev', {
+            songId: HTTP_GET['i']
+        });
+    }
+}
+
+function nextStanza() {
+    var castSession = cast.framework.CastContext.getInstance().getCurrentSession();
+    if(castSession){
+        castSession.sendMessage('urn:x-cast:sam.songbook.tamil.next', {
+            songId: HTTP_GET['i']
+        });
+    }
+}
 
 //loadData();
 
