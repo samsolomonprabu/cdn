@@ -84,6 +84,8 @@ var TextToCanvas = new function()
   		self.content = content;
 
   		self.display();
+
+  		jQuery('#downloadOptions').show();
   	};
 
   	self.display = function() {
