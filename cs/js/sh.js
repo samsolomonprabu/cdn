@@ -764,21 +764,6 @@ function handleSongMenu(el, event) {
     return false;
 };
 
-jQuery(function(){
-    jQuery.ajax({
-        method: 'POST',
-        url: 'get_song.php',
-        data: { song: HTTP_GET['song'], id: HTTP_GET['id'], i: HTTP_GET['i'] },
-        dataType: 'json',
-        context: document.body,
-        success: function(data) {
-            var parent = document.getElementById(HTTP_GET['i']);
-            TextToCanvas.init(parent, data.content);
-            document.title = data.title + ' | ' + document.title;
-        }
-    });
-});
-
 window['__onGCastApiAvailable'] = function(isAvailable) {
     if (isAvailable) {
         initializeCastApi();
