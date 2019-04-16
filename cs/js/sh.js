@@ -773,9 +773,8 @@ jQuery(function(){
         success: function(data) {
             var parent = document.getElementById(HTTP_GET['i']);
             TextToCanvas.init(parent, data.content);
-            //var meta = 
-            //jQuery('#metaDesc').attr('content', )
             document.title = data.title + ' | ' + document.title;
+            initDisqus();
         }
     });
 });
