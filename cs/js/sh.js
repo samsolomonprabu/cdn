@@ -257,10 +257,23 @@ function handleSongClick(event, showYoutube) {
     el.addClass('active');
     var info = data[el.attr('data-index')];
     window.history.pushState('song', el.text(), el.attr('href'));
+    initDisqus();
     fetchSong(showYoutube);
     event.preventDefault();
     event.stopPropagation();
     return false;
+};
+
+function initDisqus() {
+    HTTP_GET = getQueryParams(window.location.search);
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = HTTP_GET['song'];
+    };
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-christiansongbook-in.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
 };
 
 function handleSongListClick(event) {
