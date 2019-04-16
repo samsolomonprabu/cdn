@@ -212,7 +212,7 @@ function handleAlphabetClick(event) {
     window.history.pushState('alpha' + index, el.text(), el.attr('href'));
     HTTP_GET = getQueryParams(window.location.search);
     var page = window.location.pathname.split('/').pop();
-    if(page === 'index.php' || page === 'albums.php' || page === 'artists.php') {
+    if(page === '' || page === 'index.php' || page === 'albums.php' || page === 'artists.php') {
         fetch();
     } else if(page === 'video-songs.php' || page === 'karaoke-songs.php') {
         genVideos();
@@ -455,9 +455,9 @@ function fetch() {
     for(var i = 1; i <= totalLength; i++) {
         pagination.append(jQuery('<a class="' + (pageNo == i ? 'active' : '') + ' btn btn-rounded btn-sm btn-icon btn-default" href="#' + i + '">' + i + '</a>'));
     }
-    if(page === 'index.php' && totalLength > 1) {
+    if((page === '' || page === 'index.php') && totalLength > 1) {
         pageInfoEl.text('All Songs (Page ' + pageNo + '/' + totalLength + ')');
-    } else if(page === 'index.php') {
+    } else if(page === '' || page === 'index.php') {
         pageInfoEl.text('All Songs');
     }
 
@@ -521,7 +521,7 @@ function init() {
 
     var currURL = window.location.href;
     var page = window.location.pathname.split('/').pop();
-    if(page === 'index.php' || page === 'albums.php' || page === 'artists.php' || page === 'songlist.php') {
+    if(page === '' || page === 'index.php' || page === 'albums.php' || page === 'artists.php' || page === 'songlist.php') {
         fetch();
         window.onhashchange = fetch;
     } else if(page === 'video-songs.php' || page === 'karaoke-songs.php') {
