@@ -667,6 +667,7 @@ function initSlide(song, id) {
     var ul = jQuery('<ul class="dropdown-menu aside-xl dker" style="display: block;"></ul>');
     var slides = song.content.split('\n\r');
     slides.forEach(function(item, index) {
+        item = item.trim();
         var slide = template.clone(true);
         slide.attr('onclick', 'changeSlide("' + index + '");');
         var fLine = item.split('\n')[0].trim() + ' ';
