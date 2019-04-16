@@ -504,6 +504,7 @@ function fetchSong(showYoutube) {
         jQuery('#slides').html('');
         jQuery('#slideshow').html('');
         initSlide(response, HTTP_GET['song']);
+        initDisqus();
     });
 };
 
@@ -774,7 +775,6 @@ jQuery(function(){
             var parent = document.getElementById(HTTP_GET['i']);
             TextToCanvas.init(parent, data.content);
             document.title = data.title + ' | ' + document.title;
-            initDisqus();
         }
     });
 });
