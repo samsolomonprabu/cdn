@@ -665,7 +665,7 @@ function initSlide(song, id) {
     var slideshow = jQuery('#slideshow');
     slideCont.html('');
     var ul = jQuery('<ul class="dropdown-menu aside-xl dker" style="display: block;"></ul>');
-    var slides = song.content.split('\n\n');
+    var slides = song.content.split('\n\r');
     slides.forEach(function(item, index) {
         var slide = template.clone(true);
         slide.attr('onclick', 'changeSlide("' + index + '");');
