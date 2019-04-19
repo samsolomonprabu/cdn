@@ -132,7 +132,7 @@ function genVideos(videos, isKaroake) {
     var videoCont = jQuery('#videoContainer');
     videoCont.html('');
     for(var i = start - 1; (i < (start + batchSize - 1) && i < videos.length); i++) {
-        if(i !== start -1 && i % 8 == 0) {
+        if(i !== start -1 && i % 15 == 0) {
             insertAd(videoCont);
         }
         var video = template.clone(true);
@@ -427,7 +427,7 @@ function fetch() {
 
     cont.html('');
     for(var i = start - 1; (i < (start + batchSize - 1) && i < filtered.length); i++) {
-        if(i !== start -1 && i % 10 == 0) {
+        if(i !== start -1 && i % 30 == 0) {
             insertAd(cont);
         }
         var song = template.clone(true);
