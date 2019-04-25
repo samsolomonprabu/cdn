@@ -431,11 +431,13 @@ function fetch() {
             insertAd(cont);
         }
         var song = template.clone(true);
+        var songURL = url + 'song=' + md5(filtered[i].id) + '&title=' + filtered[i].title;
         song.attr('id', md5(filtered[i].id))
             .attr('data-index', filtered[i].id)
             .attr('data-i', i)
-            .attr('href', url + 'song=' + md5(filtered[i].id) + '&title=' + filtered[i].title)
+            .attr('href', songURL)
             .attr('onclick', 'handleSongClick(event);');
+        song.find('a.data-link').attr('href', songURL);
         if (filtered[i].karoke && filtered[i].karoke !== "") {
             var icon = jQuery('<i class="fas fa-microphone-alt" style="font-size: 16px; color: #007bff;margin-left:15px;"></i>');
             icon.attr('data-youtube', filtered[i].karoke).on('click', handleYoutube);
