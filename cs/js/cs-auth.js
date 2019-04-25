@@ -111,7 +111,11 @@ function addFavoritesList() {
 };
 
 function showAddSongList() {
-    jQuery('#songListModal').modal('show');
+    if(userData) {
+        jQuery('#songListModal').modal('show');
+    } else {
+        alert('Please login / register to create your song list.')
+    }
 };
 
 function addSongList(listName) {
