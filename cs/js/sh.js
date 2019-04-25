@@ -517,6 +517,7 @@ function insertAd(cont) {
 };
 
 function init() {
+    jQuery('#preloader').hide();
     cont = jQuery('#songsContainer');
     pagination = jQuery('#paginationContainer');
     pageInfoEl = jQuery('#pageInfoEl');
