@@ -132,10 +132,10 @@ function genVideos(videos, isKaroake) {
     var videoCont = jQuery('#videoContainer');
     videoCont.html('');
     for(var i = start - 1; (i < (start + batchSize - 1) && i < videos.length); i++) {
-        if(i !== start -1 && i % 15 == 0) {
-            insertAd(videoCont);
-        }
         var video = template.clone(true);
+        if(i !== start -1 && i % 10 == 0) {
+            insertAd(video);
+        }
         video.find('img').attr('src', 'https://img.youtube.com/vi/' + (isKaroake ? videos[i].karoke : videos[i].youtube) + '/0.jpg').attr('id', 'vid_' + md5(i));
         video.find('.data-song-title').text(videos[i].title);
         video.attr('data-id', (isKaroake ? videos[i].karoke : videos[i].youtube)).attr('data-title', videos[i].title).show();
@@ -427,7 +427,7 @@ function fetch() {
 
     cont.html('');
     for(var i = start - 1; (i < (start + batchSize - 1) && i < filtered.length); i++) {
-        if(i !== start -1 && i % 30 == 0) {
+        if(i !== start -1 && i % 10 == 0) {
             insertAd(cont);
         }
         var song = template.clone(true);
