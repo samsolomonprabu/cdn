@@ -259,6 +259,7 @@ function handleSongClick(event, showYoutube) {
     window.history.pushState('song', el.text(), el.attr('href'));
     initDisqus();
     fetchSong(showYoutube);
+    window.scroll({ top: jQuery('#lyrics').scrollTop, behavior: 'smooth' });
     event.preventDefault();
     event.stopPropagation();
     return false;
