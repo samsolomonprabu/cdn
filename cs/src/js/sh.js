@@ -17,9 +17,23 @@ var songbookTitle = jQuery('#songbookTitle');
 var downloadApp = jQuery('#downloadApp');
 var langSongs = [], map = {};
 var fuse;
+var currentLanguage = '';
+
+function fetchCurrentLanguage() {
+    HTTP_GET = getQueryParams(window.location.search);
+    if(HTTP_GET['lang']) {
+        currentLanguage = HTTP_GET['lang'];
+    } else {
+        currentLanguage = localStorage.getItem('lang');
+        var url = window.location.href + (window.location.href.indexOf('.php') != -1 ? '' : 'index.php') + (Object.keys(HTTP_GET).length == 0 ? '?' : '&') + 'lang=' + currentLanguage;
+        window.history.pushState('Christian Songbook - ' + currentLanguage, currentLanguage + ' Songbook', url);
+    }
+    return currentLanguage;
+};
 
 function loadData() {
     HTTP_GET = getQueryParams(window.location.search);
+    fetchCurrentLanguage();
     langPicker.hide();
     langSongs = songs;
     
@@ -27,11 +41,11 @@ function loadData() {
     if (page === 'index.php' || page === '') {
         data = songs;
     } else if (page === 'albums.php') {
-        genCategories(albums, 'albums.php', 'handleAlbumClick(event);', 'https://aagjxwfhen.cloudimg.io/width/800/none/https://samsolomonprabu.github.io/cdn/albums/' + localStorage.getItem('lang') + '/');
+        genCategories(albums, 'albums.php', 'handleAlbumClick(event);', 'https://aagjxwfhen.cloudimg.io/width/800/none/https://samsolomonprabu.github.io/cdn/albums/' + currentLanguage + '/');
         data = [];
         HTTP_GET['id'] && filterAlbum();
     } else if (page === 'artists.php') {
-        genCategories(artists, 'artists.php', 'handleArtistClick(event);', 'https://aagjxwfhen.cloudimg.io/width/800/none/https://samsolomonprabu.github.io/cdn/artists/' + localStorage.getItem('lang') + '/');
+        genCategories(artists, 'artists.php', 'handleArtistClick(event);', 'https://aagjxwfhen.cloudimg.io/width/800/none/https://samsolomonprabu.github.io/cdn/artists/' + currentLanguage + '/');
         data = [];
         HTTP_GET['id'] && filterArtist();
     } else if (page === 'video-songs.php') {
@@ -132,10 +146,10 @@ function genVideos(videos, isKaroake) {
     var videoCont = jQuery('#videoContainer');
     videoCont.html('');
     for(var i = start - 1; (i < (start + batchSize - 1) && i < videos.length); i++) {
-        var video = template.clone(true);
-        if(i !== start -1 && i % 10 == 0) {
-            insertAd(video);
+        if(i !== start -1 && i % 15 == 0) {
+            insertAd(videoCont);
         }
+        var video = template.clone(true);
         video.find('img').attr('src', 'https://img.youtube.com/vi/' + (isKaroake ? videos[i].karoke : videos[i].youtube) + '/0.jpg').attr('id', 'vid_' + md5(i));
         video.find('.data-song-title').text(videos[i].title);
         video.attr('data-id', (isKaroake ? videos[i].karoke : videos[i].youtube)).attr('data-title', videos[i].title).show();
@@ -259,7 +273,6 @@ function handleSongClick(event, showYoutube) {
     window.history.pushState('song', el.text(), el.attr('href'));
     initDisqus();
     fetchSong(showYoutube);
-    window.scroll({ top: jQuery('#lyrics').scrollTop, behavior: 'smooth' });
     event.preventDefault();
     event.stopPropagation();
     return false;
@@ -428,11 +441,11 @@ function fetch() {
 
     cont.html('');
     for(var i = start - 1; (i < (start + batchSize - 1) && i < filtered.length); i++) {
-        if(i !== start -1 && i % 10 == 0) {
+        if(i !== start -1 && i % 30 == 0) {
             insertAd(cont);
         }
         var song = template.clone(true);
-        var songURL = url + 'song=' + md5(filtered[i].id) + '&title=' + filtered[i].title;
+        var songURL = url + (url.indexOf('.php') != -1 ? '' : 'index.php') + 'song=' + md5(filtered[i].id) + '&title=' + filtered[i].title + '&lang=' + fetchCurrentLanguage();
         song.attr('id', md5(filtered[i].id))
             .attr('data-index', filtered[i].id)
             .attr('data-i', i)
@@ -712,7 +725,7 @@ var langProgress = jQuery('#langProgress');
 (function() {
     var langList = langPicker.find('.lang-list').eq(0);
     languages.forEach(function(item, index) {
-        langList.append(jQuery('<a href="index.php" class="list-group-item" onclick="handleLangClick(event, \'' + item.id + '\');">' + item.label + '</a>'));
+        langList.append(jQuery('<a href="index.php?lang=' + item.id + '" class="list-group-item" onclick="handleLangClick(event, \'' + item.id + '\');">' + item.label + '</a>'));
     });
 })();
 
@@ -749,7 +762,7 @@ function closeLanguagePicker() {
 
 jQuery(document).ready(function() {
     HTTP_GET = getQueryParams(window.location.search);
-    var lang = localStorage.getItem('lang');
+    var lang = fetchCurrentLanguage();
     var page = window.location.pathname.split('/').pop();
     if (lang) {
         localStorage.setItem('lang', lang);
