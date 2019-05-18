@@ -767,9 +767,9 @@ jQuery(document).ready(function() {
     if (lang) {
         localStorage.setItem('lang', lang);
         jQuery('#androidApp').attr('href', androidBaseURL + lang);
-        var filename = basepath + lang + '-songs.js';
-        var script = jQuery('<script id="songdata" type="text/javascript" src="' + filename + '"></script>');
-        jQuery(document.body).append(script);
+        if(!HTTP_GET['lang']) {
+            window.location.href = page + '?lang=' + lang;
+        }
     } else {
         langPicker.show();
     }
