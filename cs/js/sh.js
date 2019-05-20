@@ -476,9 +476,7 @@ function fetch() {
     } else if(page === '' || page === 'index.php') {
         pageInfoEl.text('All Songs');
     }
-
     appendSonglistDropdown();
-    window.scroll({ top: cont.scrollTop, behavior: 'smooth' });
 };
 
 function appendSongMenu(el) {
@@ -521,7 +519,7 @@ function fetchSong(showYoutube) {
         jQuery('#slideshow').html('');
         initSlide(response, HTTP_GET['song']);
         initDisqus();
-        document.getElementById('lyrics').scrollIntoView({
+        document.getElementById('lyricsCont').scrollIntoView({
             behavior: 'smooth'
         });
     });
@@ -746,7 +744,7 @@ function handleLangClick(event, lang) {
     localStorage.setItem('lang', lang);
 
     jQuery('#androidApp').attr('href', androidBaseURL + lang);
-    jQuery('#allSongsEl').click();
+    jQuery('#allSongsEl').attr('href', 'index.php?lang=' + lang).click();
 
     event.preventDefault();
     event.stopPropagation();
