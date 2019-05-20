@@ -521,6 +521,9 @@ function fetchSong(showYoutube) {
         jQuery('#slideshow').html('');
         initSlide(response, HTTP_GET['song']);
         initDisqus();
+        document.getElementById('lyrics').scrollIntoView({
+            behavior: 'smooth'
+        });
     });
 };
 
