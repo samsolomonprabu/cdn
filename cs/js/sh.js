@@ -509,6 +509,9 @@ function fetchSong(showYoutube) {
         },
         method: 'POST'
     }).done(function(response) {
+        if (response && !response.content) {
+            response = JSON.parse(response);
+        }
         jQuery('#lyricStatus').hide();
         jQuery('#disqus_thread').show();
         jQuery('#lyrics').find('pre').text(response.content);
