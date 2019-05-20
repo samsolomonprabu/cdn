@@ -745,6 +745,10 @@ function handleLangClick(event, lang) {
 
     jQuery('#androidApp').attr('href', androidBaseURL + lang);
     jQuery('#allSongsEl').attr('href', 'index.php?lang=' + lang).click();
+    jQuery('#albumNav').attr('href', 'albums.php?lang=' + lang);
+    jQuery('#artistNav').attr('href', 'artists.php?lang=' + lang);
+    jQuery('#videoNav').attr('href', 'video-songs.php?lang=' + lang);
+    jQuery('#karaokeNav').attr('href', 'karaoke-songs.php?lang=' + lang);
 
     event.preventDefault();
     event.stopPropagation();
