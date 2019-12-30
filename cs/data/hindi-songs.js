@@ -2,6 +2,8 @@ var songs = [{"id":"21661","title":"अंबर भी नया, धरती 
 var albums = [];
 var artists = [];
 var genres = [];
+var featuredAlbums = [];
+var featuredArtists = [];
 var videoSongs = songs.filter(function(song) {
     return song.youtube && song.youtube !== "";
 });

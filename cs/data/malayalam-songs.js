@@ -2,6 +2,8 @@ var songs = [{"id":"11058","title":"അ അ അ ആ എൻ പ്രിയൻ","
 var albums = [];
 var artists = [];
 var genres = [];
+var featuredAlbums = [];
+var featuredArtists = [];
 var videoSongs = songs.filter(function(song) {
     return song.youtube && song.youtube !== "";
 });

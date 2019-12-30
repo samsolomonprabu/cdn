@@ -2,6 +2,8 @@ var songs = [{"id":"9902","title":"अँध्यारो जगतमा ज�
 var albums = [];
 var artists = [];
 var genres = [];
+var featuredAlbums = [];
+var featuredArtists = [];
 var videoSongs = songs.filter(function(song) {
     return song.youtube && song.youtube !== "";
 });
