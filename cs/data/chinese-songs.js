@@ -2,6 +2,8 @@ var songs = [{"id":"31123","title":"一切歌颂赞美"},{"id":"31263","title":"
 var albums = [];
 var artists = [];
 var genres = [];
+var featuredAlbums = [];
+var featuredArtists = [];
 var videoSongs = songs.filter(function(song) {
     return song.youtube && song.youtube !== "";
 });

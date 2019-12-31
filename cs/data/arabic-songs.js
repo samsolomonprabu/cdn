@@ -2,6 +2,8 @@ var songs = [{"id":"28948","title":"آتى إليك يا يسوعـى أنت ا�
 var albums = [];
 var artists = [];
 var genres = [];
+var featuredAlbums = [];
+var featuredArtists = [];
 var videoSongs = songs.filter(function(song) {
     return song.youtube && song.youtube !== "";
 });

@@ -2,6 +2,8 @@ var songs = [{"id":"13330","title":"Aendi, ma kyalo"},{"id":"13445","title":"Ait
 var albums = [];
 var artists = [];
 var genres = [];
+var featuredAlbums = [];
+var featuredArtists = [];
 var videoSongs = songs.filter(function(song) {
     return song.youtube && song.youtube !== "";
 });

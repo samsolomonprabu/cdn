@@ -2,6 +2,8 @@ var songs = [{"id":"25332","title":"40 million babies lost to","youtube":""},{"i
 var albums = [];
 var artists = [];
 var genres = [];
+var featuredAlbums = [];
+var featuredArtists = [];
 var videoSongs = songs.filter(function(song) {
     return song.youtube && song.youtube !== "";
 });
