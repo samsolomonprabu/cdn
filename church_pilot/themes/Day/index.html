@@ -26,7 +26,7 @@
 
 
   <link href="assets/css/style.css" rel="stylesheet">
- 
+
 </head>
 
 <body>
@@ -35,15 +35,14 @@
   <section id="topbar" class="d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
-        <i data-email class="bi bi-envelope-fill"></i><a href="mailto:contact@example.com">${EMAIL}</a>
-        <i data-phone class="bi bi-phone-fill phone-icon"></i><a href="tel:${ PHONE }">${ PHONE }</a> 
+        <i class="bi bi-envelope-fill"></i><a data-email href="mailto:info@churchpilot.org">info@churchpilot.org</a>
+        <i class="bi bi-phone-fill phone-icon"></i><a data-phone href="tel:919999999999">+91 99999 99999</a>
       </div>
       <div class="social-links d-none d-md-block">
         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
         <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
         <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
         <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-
       </div>
     </div>
   </section>
@@ -52,7 +51,7 @@
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a data-id="cp1" href="index.html">${ SITE_TITLE }</a></h1>
+      <h1 class="logo"><a data-site-title href="index.html">Church Pilot</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -148,7 +147,7 @@
     </section><!-- End Why Us Section -->
 
     <!-- ======= Clients Section ======= -->
-   
+
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
       <div class="container">
@@ -428,7 +427,7 @@
             <div class="info-box mb-4">
               <i class="bx bx-map"></i>
               <h3 data-id="cp72">Our Address</h3>
-              <p data-id="cp73">A108 Adam Street, New York, NY 535022</p>
+              <p data-id="cp73" data-address>Church Pilot<br>Christian Apps, Mamandur</p>
             </div>
           </div>
 
@@ -436,7 +435,7 @@
             <div class="info-box  mb-4">
               <i class="bx bx-envelope"></i>
               <h3>Email Us</h3>
-              <p><a data-email href="mailto:${ EMAIL }">${ EMAIL }</a></p>
+              <p><a data-email href="mailto:info@churchpilot.org">info@churchpilot.org</a></p>
             </div>
           </div>
 
@@ -444,7 +443,7 @@
             <div class="info-box  mb-4">
               <i class="bx bx-phone-call"></i>
               <h3>Call Us</h3>
-              <p><a data-phone href="tel:${ PHONE }">${ PHONE }</a></p>
+              <p><a data-phone href="tel:919999999999">+91 99999 99999</a></p>
             </div>
           </div>
 
@@ -496,12 +495,11 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="footer-info">
-              <h3>${ SITE_TITLE }</h3>
+              <h3 data-site-title>Church Pilot</h3>
               <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong data-phone>Phone:</strong> ${ PHONE }<br>
-                <strong data-email>Email:</strong> ${ EMAIL }<br>
+                <span data-address>Church Pilot<br>Christian Apps, Mamandur<br><br></span>
+                <strong>Phone:</strong> <a data-phone href="tel:919999999999"></a><br>
+                <strong>Email:</strong> <a data-email href="mailto:info@churchpilot.org">info@churchpilot.org</a><br>
               </p>
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -550,13 +548,9 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>${ SITE_TITLE }</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span data-site-title></span></strong>. All Rights Reserved
       </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
+      <div class="credits" data-powered-by>
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
@@ -575,8 +569,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="../site-builder.js"></script>
 
 </body>
-
 </html>
