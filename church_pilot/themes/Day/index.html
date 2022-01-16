@@ -35,8 +35,8 @@
   <section id="topbar" class="d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope-fill"></i><a href="mailto:contact@example.com">${EMAIL}</a>
-        <i class="bi bi-phone-fill phone-icon"></i><a href="tel:${ PHONE }">${ PHONE }</a> 
+        <i data-email class="bi bi-envelope-fill"></i><a href="mailto:contact@example.com">${EMAIL}</a>
+        <i data-phone class="bi bi-phone-fill phone-icon"></i><a href="tel:${ PHONE }">${ PHONE }</a> 
       </div>
       <div class="social-links d-none d-md-block">
         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -436,7 +436,7 @@
             <div class="info-box  mb-4">
               <i class="bx bx-envelope"></i>
               <h3>Email Us</h3>
-              <p><a href="mailto:${ EMAIL }">${ EMAIL }</a></p>
+              <p><a data-email href="mailto:${ EMAIL }">${ EMAIL }</a></p>
             </div>
           </div>
 
@@ -444,7 +444,7 @@
             <div class="info-box  mb-4">
               <i class="bx bx-phone-call"></i>
               <h3>Call Us</h3>
-              <p><a href="tel:${ PHONE }">${ PHONE }</a></p>
+              <p><a data-phone href="tel:${ PHONE }">${ PHONE }</a></p>
             </div>
           </div>
 
@@ -500,8 +500,8 @@
               <p>
                 A108 Adam Street <br>
                 NY 535022, USA<br><br>
-                <strong>Phone:</strong> ${ PHONE }<br>
-                <strong>Email:</strong> ${ EMAIL }<br>
+                <strong data-phone>Phone:</strong> ${ PHONE }<br>
+                <strong data-email>Email:</strong> ${ EMAIL }<br>
               </p>
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
