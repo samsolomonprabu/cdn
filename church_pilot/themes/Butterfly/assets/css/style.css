@@ -413,7 +413,7 @@ section {
   font-size: 14px;
 }
 .about .video-box {
-  background: url("../img/about.jpg") center center no-repeat;
+  background: url("..//samsolomonprabu.github.io/cdn/church_pilot/themes/assets/img/about3.jpg") center center no-repeat;
   background-size: cover;
   min-height: 500px;
 }
@@ -517,7 +517,7 @@ section {
 # Counts
 --------------------------------------------------------------*/
 .counts {
-  background: url("../img/counts-bg.jpg") center center no-repeat;
+  background: url("//samsolomonprabu.github.io/cdn/church_pilot/themes/assets/img/counts-bg14.jpg") center center no-repeat;
   background-size: cover;
   padding: 80px 0 60px 0;
   position: relative;
@@ -831,7 +831,7 @@ section {
 --------------------------------------------------------------*/
 .testimonials {
   padding: 80px 0;
-  background: url("../img/cta-bg.jpg") no-repeat;
+  background: url("//samsolomonprabu.github.io/cdn/church_pilot/themes/assets/img/cta-bg.jpg") no-repeat;
   background-position: center center;
   background-size: cover;
   position: relative;
