@@ -75,7 +75,7 @@
           <div class="container">
             <h2 data-id>Welcome to <span>Medicio</span></h2>
             <p data-id>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel.</p>
-            <a data-id external-link href="#about" class="btn-get-started scrollto">Read More</a>
+            <a data-id external-link href="#about-us" class="btn-get-started scrollto">Read More</a>
           </div>
         </div>
 
@@ -83,7 +83,7 @@
           <div class="container">
             <h2 data-id>Lorem Ipsum Dolor</h2>
             <p data-id>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel.</p>
-            <a data-id external-link href="#about" class="btn-get-started scrollto">Read More</a>
+            <a data-id external-link href="#about-us" class="btn-get-started scrollto">Read More</a>
           </div>
         </div>
 
@@ -91,7 +91,7 @@
           <div class="container">
             <h2 data-id>Sequi ea ut et est quaerat</h2>
             <p data-id>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel.</p>
-            <a data-id external-link href="#about" class="btn-get-started scrollto">Read More</a>
+            <a data-id external-link href="#about-us" class="btn-get-started scrollto">Read More</a>
           </div>
         </div>
 
@@ -205,7 +205,7 @@
           <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
               <i class="fas fa-user-md"></i>
-              <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-id data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1" class="purecounter"></span>
 
               <p data-id><strong>Doctors</strong> consequuntur quae qui deca rode</p>
               <a data-id external-link href="#">Find out more &raquo;</a>
@@ -215,7 +215,7 @@
           <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
               <i class="far fa-hospital"></i>
-              <span data-purecounter-start="0" data-purecounter-end="26" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-id data-purecounter-start="0" data-purecounter-end="26" data-purecounter-duration="1" class="purecounter"></span>
               <p data-id><strong>Departments</strong> adipisci atque cum quia aut numquam delectus</p>
               <a data-id external-link href="#">Find out more &raquo;</a>
             </div>
@@ -224,7 +224,7 @@
           <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
               <i class="fas fa-flask"></i>
-              <span data-purecounter-start="0" data-purecounter-end="14" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-id data-purecounter-start="0" data-purecounter-end="14" data-purecounter-duration="1" class="purecounter"></span>
               <p data-id><strong>Research Lab</strong> aut commodi quaerat. Aliquam ratione</p>
               <a data-id external-link href="#">Find out more &raquo;</a>
             </div>
@@ -233,7 +233,7 @@
           <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
               <i class="fas fa-award"></i>
-              <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-id data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span>
               <p data-id><strong>Awards</strong> rerum asperiores dolor molestiae doloribu</p>
               <a data-id external-link href="#">Find out more &raquo;</a>
             </div>
@@ -345,19 +345,19 @@
               <input type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" required>
             </div>
             <div class="col-md-4 form-group mt-3">
-              <select data-id name="department" id="department" class="form-select">
-                <option value="">Select Department</option>
-                <option value="Department 1">Department 1</option>
-                <option value="Department 2">Department 2</option>
-                <option value="Department 3">Department 3</option>
+              <select name="department" id="department" class="form-select">
+                <option data-id value="">Select Department</option>
+                <option data-id value="Department 1">Department 1</option>
+                <option data-id value="Department 2">Department 2</option>
+                <option data-id value="Department 3">Department 3</option>
               </select>
             </div>
             <div class="col-md-4 form-group mt-3">
-              <select data-id name="doctor" id="doctor" class="form-select">
-                <option value="">Select Doctor</option>
-                <option value="Doctor 1">Doctor 1</option>
-                <option value="Doctor 2">Doctor 2</option>
-                <option value="Doctor 3">Doctor 3</option>
+              <select name="doctor" id="doctor" class="form-select">
+                <option data-id value="">Select Doctor</option>
+                <option data-id value="Doctor 1">Doctor 1</option>
+                <option data-id value="Doctor 2">Doctor 2</option>
+                <option data-id value="Doctor 3">Doctor 3</option>
               </select>
             </div>
           </div>
@@ -543,10 +543,11 @@
             <div class="member" data-aos="fade-up" data-aos-delay="100">
               <div class="member-img">
                 <img src="//samsolomonprabu.github.io/cdn/church_pilot/themes/assets/img/doctors/doctors-1.jpg" class="img-fluid" alt="">
-                <div class="social">
+                <div external-link class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
                   <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bx bxl-skype"></i></a>
                   <a href=""><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
@@ -561,10 +562,11 @@
             <div class="member" data-aos="fade-up" data-aos-delay="200">
               <div class="member-img">
                 <img src="//samsolomonprabu.github.io/cdn/church_pilot/themes/assets/img/doctors/doctors-2.jpg" class="img-fluid" alt="">
-                <div class="social">
+                <div external-link class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
                   <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bx bxl-skype"></i></a>
                   <a href=""><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
@@ -579,10 +581,11 @@
             <div class="member" data-aos="fade-up" data-aos-delay="300">
               <div class="member-img">
                 <img src="//samsolomonprabu.github.io/cdn/church_pilot/themes/assets/img/doctors/doctors-3.jpg" class="img-fluid" alt="">
-                <div class="social">
+                <div external-link class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
                   <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bx bxl-skype"></i></a>
                   <a href=""><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
@@ -597,10 +600,11 @@
             <div class="member" data-aos="fade-up" data-aos-delay="400">
               <div class="member-img">
                 <img src="//samsolomonprabu.github.io/cdn/church_pilot/themes/assets/img/doctors/doctors-4.jpg" class="img-fluid" alt="">
-                <div class="social">
+                <div external-link class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
                   <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bx bxl-skype"></i></a>
                   <a href=""><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
@@ -733,7 +737,7 @@
               <strong>Phone:</strong> +91 99999 99999<br>
               <strong>Email:</strong> info@churchpilot.org<br>
               </p>
-              <div class="social-links mt-3">
+              <div external-link class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
@@ -789,7 +793,6 @@
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
   <script src="//samsolomonprabu.github.io/cdn/church_pilot/themes/assets/vendor/purecounter/purecounter.js"></script>
   <script src="//samsolomonprabu.github.io/cdn/church_pilot/themes/assets/vendor/aos/aos.js"></script>
   <script src="//samsolomonprabu.github.io/cdn/church_pilot/themes/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
