@@ -373,6 +373,7 @@ section {
   transition: 0.5s;
   border: 1px solid #fff;
   color: #fff;
+  background:#00d3b8;
 }
 #hero .btn-get-started:hover {
   background: #fff;
