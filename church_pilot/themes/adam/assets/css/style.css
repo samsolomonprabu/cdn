@@ -329,7 +329,7 @@ section {
 }
 #hero:before {
   content: "";
-  background: rgba(112, 185, 176, 0.85);
+  background: rgba(112, 185, 176, 0.50);
   position: absolute;
   bottom: 0;
   top: 0;
