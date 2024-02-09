@@ -401,7 +401,7 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
   position: relative;
 }
-#hero:before {
+/*#hero:before {
   content: "";
   background: rgba(255, 255, 255, 0.6);
   position: absolute;
@@ -409,7 +409,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   right: 0;
-}
+}*/
 #hero .container {
   position: relative;
 }
