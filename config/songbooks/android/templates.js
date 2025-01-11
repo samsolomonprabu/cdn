@@ -26,6 +26,14 @@ var template = {
     "buttonIcon": ""
 }
 
+"ad": {
+        "title": "Donate to Christian Apps",
+        "description": "Telugu Christian Songs & Telugu Bible apps funded by you. Donate now to support Christian Apps.",
+        "link": "https://razorpay.me/@christianapps",
+        "buttonText": "Donate",
+        "buttonIcon": ""
+    }
+
 /* Tamil */
 
 "ad1": {
