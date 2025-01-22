@@ -43,3 +43,11 @@ var template = {
     "buttonText": "Donate",
     "buttonIcon": ""
 }
+
+"ad": {
+    "title": "Build Your Church’s Website in Minutes",
+    "description": "Create a stunning website for your church—no tech skills needed! Showcase your events, sermons, and ministries all on your own with our easy-to-use website builder.",
+    "link": "https://churchpilot.org",
+    "buttonText": "Start Building Today",
+    "buttonIcon": ""
+}
