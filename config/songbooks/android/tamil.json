@@ -1,9 +1,9 @@
 {
     "ad": {
-        "title": "Find Your Song Now",
-        "description": "Explore 70,000+ multilingual lyrics with chords, videos, transliterations, and advanced search. Your ultimate music destination—start discovering today!",
-        "link": "https://christiansongbook.org/?language=tamil&version=3&utm_source=tamil_christian_songs&utm_medium=referral&utm_campaign=app_banner",
-        "buttonText": "Find a Song Now!",
-        "buttonIcon": "🔍"
+        "title": "Donate to Christian Apps",
+        "description": "மிக சிறந்த, தரமுள்ள செயலிகளை தமிழில் தொடர்ந்து உருவாக்க உதவுங்கள். உங்களின் சிறிய பங்களிப்பு மிகப்பெரிய மாற்றங்களை நிகழ்த்தும். எங்கள் மீது நீங்கள் கொண்ட அன்பிற்கு நன்றி.",
+        "link": "https://razorpay.me/@christianapps",
+        "buttonText": "Donate",
+        "buttonIcon": ""
     }
 }
