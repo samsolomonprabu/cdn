@@ -1,6 +1,5 @@
 {
-    "db_version": "1.0.0",
-    "coprights": "We do not hold copyrights for all the lyrics published here. Intention of this is to provide ease for the congregation to sing for our Lord by using technology as a medium of carrrying paper books. if you have an issue with the content and wants to be removed. please raise a request as guided here.",
+    "db_version": 1,
     "ads": {
         "interval": 20,
         "items": [
@@ -16,85 +15,5 @@
                 "link": "https://christiansongbook.org/?language=tamil&version=3&utm_source=tamil_christian_songs&utm_medium=referral&utm_campaign=app_banner"
             }
         ]
-    },
-    "team": [
-        {
-            "name": "Sam",
-            "designation": "CEO",
-            "content": "testing testing testing",
-            "image": "sam.webp",
-            "social": [
-                {
-                    "name": "FaceBook",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                },
-                {
-                    "name": "Instagram",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                },
-                {
-                    "name": "FaceBook",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                },
-                {
-                    "name": "FaceBook",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                }
-            ]
-        },
-        {
-            "name": "Samson",
-            "designation": "CEO",
-            "content": "testing testing testing",
-            "image": "sam.webp",
-            "social": [
-                {
-                    "name": "FaceBook",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                },
-                {
-                    "name": "Instagram",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                },
-                {
-                    "name": "FaceBook",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                },
-                {
-                    "name": "FaceBook",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                }
-            ]
-        }
-    ],
-    "stats": [
-        {
-            "icon": "",
-            "label": "App Version",
-            "value": "1.0.0"
-        },
-        {
-            "icon": "",
-            "label": "Total Songs",
-            "value": "400"
-        },
-        {
-            "icon": "",
-            "label": "Keerthanaigal",
-            "value": "450"
-        },
-        {
-            "icon": "",
-            "label": "Paamalaigal",
-            "value": "450"
-        }
-    ]
+    }
 }
