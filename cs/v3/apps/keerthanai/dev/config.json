@@ -1,98 +1,19 @@
 {
     "db_version": "1.0.0",
-    "coprights": "We do not hold copyrights for all the lyrics published here. Intention of this is to provide ease for the congregation to sing for our Lord by using technology as a medium of carrrying paper books. if you have an issue with the content and wants to be removed. please raise a request as guided here.",
-    "ads": [
-        {
-            "title": "Find Your Song Now",
-            "description": "Explore 70,000+ multilingual lyrics with chords, videos, transliterations, and advanced search. Your ultimate music destination—start discovering today!",
-            "image": "",
-            "link": "https://christiansongbook.org/?language=tamil&version=3&utm_source=tamil_christian_songs&utm_medium=referral&utm_campaign=app_banner"
-        },
-        {
-            "title": "Christian Chords",
-            "description": "Explore 70,000+ multilingual lyrics with chords, videos, transliterations, and advanced search. Your ultimate music destination—start discovering today!",
-            "image": "",
-            "link": "https://christiansongbook.org/?language=tamil&version=3&utm_source=tamil_christian_songs&utm_medium=referral&utm_campaign=app_banner"
-        }
-    ],
-    "team": [
-        {
-            "name": "Sam",
-            "designation": "CEO",
-            "content": "testing testing testing",
-            "image": "sam.webp",
-            "social": [
-                {
-                    "name": "FaceBook",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                },
-                {
-                    "name": "Instagram",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                },
-                {
-                    "name": "FaceBook",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                },
-                {
-                    "name": "FaceBook",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                }
-            ]
-        },
-        {
-            "name": "Samson",
-            "designation": "CEO",
-            "content": "testing testing testing",
-            "image": "sam.webp",
-            "social": [
-                {
-                    "name": "FaceBook",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                },
-                {
-                    "name": "Instagram",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                },
-                {
-                    "name": "FaceBook",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                },
-                {
-                    "name": "FaceBook",
-                    "icon": "",
-                    "link": "https://facebook.com/samsolomonprabu"
-                }
-            ]
-        }
-    ],
-    "stats": [
-        {
-            "icon": "",
-            "label": "App Version",
-            "value": "1.0.0"
-        },
-        {
-            "icon": "",
-            "label": "Total Songs",
-            "value": "400"
-        },
-        {
-            "icon": "",
-            "label": "Keerthanaigal",
-            "value": "450"
-        },
-        {
-            "icon": "",
-            "label": "Paamalaigal",
-            "value": "450"
-        }
-    ]
+    "ads": {
+        "interval": 20,
+        "items": [
+            {
+                "title": "Find Your Song Now",
+                "description": "Explore 70,000+ multilingual lyrics with chords, videos, transliterations, and advanced search. Your ultimate music destination—start discovering today!",
+                "image": "https://ik.imagekit.io/pukqq5vmw/cs/images/cs_logo.webp",
+                "link": "https://christiansongbook.org/?language=tamil&version=3&utm_source=tamil_christian_songs&utm_medium=referral&utm_campaign=app_banner"
+            },
+            {
+                "title": "Christian Chords",
+                "description": "Explore 70,000+ multilingual lyrics with chords, videos, transliterations, and advanced search. Your ultimate music destination—start discovering today!",
+                "link": "https://christiansongbook.org/?language=tamil&version=3&utm_source=tamil_christian_songs&utm_medium=referral&utm_campaign=app_banner"
+            }
+        ]
+    }
 }
