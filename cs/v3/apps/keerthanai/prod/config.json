@@ -1,7 +1,6 @@
 {
-    "db_version": "1.0.1",
+    "db_version": "1.0.0",
     "ads": {
-        "title": "What’s New & Exciting",
         "interval": 20,
         "items": [
             {
