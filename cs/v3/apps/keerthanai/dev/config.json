@@ -5,13 +5,13 @@
         "interval": 30,
         "items": [
             {
-                "title": "Find Your Song Now",
+                "title": "Find Your Song Now - Dev",
                 "description": "Explore 70,000+ multilingual lyrics with chords, videos, transliterations, and advanced search. Your ultimate music destination—start discovering today!",
                 "image": "https://ik.imagekit.io/pukqq5vmw/cs/images/cs_logo.webp",
                 "link": "https://christiansongbook.org/?language=tamil&version=3&utm_source=tamil_christian_songs&utm_medium=referral&utm_campaign=app_banner"
             },
             {
-                "title": "Christian Chords",
+                "title": "Christian Chords - Dev",
                 "description": "Explore 70,000+ multilingual lyrics with chords, videos, transliterations, and advanced search. Your ultimate music destination—start discovering today!",
                 "link": "https://christiansongbook.org/?language=tamil&version=3&utm_source=tamil_christian_songs&utm_medium=referral&utm_campaign=app_banner"
             }
