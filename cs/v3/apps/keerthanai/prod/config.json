@@ -2,6 +2,7 @@
     "db_version": "1.0.0",
     "ads": {
         "interval": 20,
+        "title": "What's New & Announcements",
         "items": [
             {
                 "title": "Find Your Song Now",
