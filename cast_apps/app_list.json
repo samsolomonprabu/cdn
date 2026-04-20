@@ -4,19 +4,19 @@
       "name": "Songbook (Tamil)",
       "appLink": "https://play.google.com/store/apps/details?id=sam.songbook.tamil&hl=en_IN",
       "github": "",
-      "qrCodeImage": ""
+      "qrCodeImage": "https://raw.githubusercontent.com/samsolomonprabu/cdn/master/cast_apps/app_icon/tamil.png"
     },
     {
       "name": "Songbook (Telugu)",
       "appLink": "https://play.google.com/store/apps/details?id=sam.songbook.telugu",
       "github": "",
-      "qrCodeImage": ""
+      "qrCodeImage": "https://raw.githubusercontent.com/samsolomonprabu/cdn/master/cast_apps/app_icon/telugu.png"
     },
     {
       "name": "Songbook (Kannada)",
       "appLink": "https://play.google.com/store/apps/details?id=sam.songbook.kannada",
       "github": "",
-      "qrCodeImage": ""
+      "qrCodeImage": "https://raw.githubusercontent.com/samsolomonprabu/cdn/master/cast_apps/app_icon/kannada.png"
     },
     {
       "name": "Vedham (Tamil)",
