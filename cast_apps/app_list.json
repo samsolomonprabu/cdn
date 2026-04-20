@@ -1,0 +1,34 @@
+{
+  "apps": [
+    {
+      "name": "Songbook (Tamil)",
+      "appLink": "https://play.google.com/store/apps/details?id=sam.songbook.tamil&hl=en_IN",
+      "github": "",
+      "qrCodeImage": ""
+    },
+    {
+      "name": "Songbook (Telugu)",
+      "appLink": "https://play.google.com/store/apps/details?id=sam.songbook.telugu",
+      "github": "",
+      "qrCodeImage": ""
+    },
+    {
+      "name": "Songbook (Kannada)",
+      "appLink": "https://play.google.com/store/apps/details?id=sam.songbook.kannada",
+      "github": "",
+      "qrCodeImage": ""
+    },
+    {
+      "name": "Vedham (Tamil)",
+      "appLink": "https://play.google.com/store/apps/details?id=sam.bible.tamilfree",
+      "github": "",
+      "qrCodeImage": ""
+    },
+    {
+      "name": "Vedham (Telugu)",
+      "appLink": "https://play.google.com/store/apps/details?id=sam.bible.telugufree",
+      "github": "",
+      "qrCodeImage": ""
+    }
+  ]
+}
