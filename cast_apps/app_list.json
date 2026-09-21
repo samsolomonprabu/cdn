@@ -1,0 +1,34 @@
+{
+  "apps": [
+    {
+      "name": "Songbook (Tamil)",
+      "appLink": "https://play.google.com/store/apps/details?id=sam.songbook.tamil&hl=en_IN",
+      "github": "",
+      "logoImage": "https://raw.githubusercontent.com/samsolomonprabu/cdn/master/cast_apps/app_icon/tamil.png"
+    },
+    {
+      "name": "Songbook (Telugu)",
+      "appLink": "https://play.google.com/store/apps/details?id=sam.songbook.telugu",
+      "github": "",
+      "logoImage": "https://raw.githubusercontent.com/samsolomonprabu/cdn/master/cast_apps/app_icon/telugu.png"
+    },
+    {
+      "name": "Songbook (Kannada)",
+      "appLink": "https://play.google.com/store/apps/details?id=sam.songbook.kannada",
+      "github": "",
+      "logoImage": "https://raw.githubusercontent.com/samsolomonprabu/cdn/master/cast_apps/app_icon/kannada.png"
+    },
+    {
+      "name": "Vedham (Tamil)",
+      "appLink": "https://play.google.com/store/apps/details?id=sam.bible.tamilfree",
+      "github": "",
+      "logoImage": "https://raw.githubusercontent.com/samsolomonprabu/cdn/master/cast_apps/app_icon/tamil.webp"
+    },
+    {
+      "name": "Vedham (Telugu)",
+      "appLink": "https://play.google.com/store/apps/details?id=sam.bible.telugufree",
+      "github": "",
+      "logoImage": "https://raw.githubusercontent.com/samsolomonprabu/cdn/master/cast_apps/app_icon/telugu-bible.webp"
+    }
+  ]
+}
